@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap&display=swap');
+/* General rules */
+p, h1, h2, h3, h4, h5, h6, p, div, span {
+    font-family: 'Asap', sans-serif!important;
+}
+
+html {
+    height: 100%;
+}
+html body {
+    height: 100%;
+    overflow: hidden;
+}
+html body .body-content {
+    position: absolute;
+    top: 60px;
+    bottom: 40px;
+    right: 0;
+    left: 0;
+    overflow-y: auto;
+}
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+h1 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Header */
+header > nav,
+header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: #202c2f;
+    color: #ecf0f1;
+    height: 60px;
+}
+header nav a {
+    color: #fff;
+}
+
+/* Sidebar */
+#sidebar {
+    /* position: fixed; */
+    /* width: 20%; */
+    height: 100%;
+    overflow: auto;
+    background-color: #31383a;
+}
+#sidebar div.list-group a {
+    background-color: #31383a;
+    border: none;
+    margin-bottom: 4px;
+    color: #fff;
+}
+#sidebar div.list-group a:hover,
+#sidebar div.list-group a.active {
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: #202c2f;
+    /* text-decoration: underline; */
+}
+#sidebar div.list-group a span {
+    padding-left: 10px;
+}
+
+/* Main page */
+#mainpage {
+    background-color: #cccccc11;
+    position: relative;
+    /* width: 80%; */
+    padding: 10px;
+    /* left: 20%; */
+    height: 100%;
+    overflow: auto;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #202c2f;
+    color: #ecf0f1;
+    height: 40px;
+    text-align: center;
+}
+
+
