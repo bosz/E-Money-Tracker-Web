@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 
 function AdminLayout({ children, pageTitle }) {
-  // TODO: CHECK IF USER IS LOGGED IN BEFORE CONTINUING
+  // TODO: CHECK IF USER IS LOGGED IN BEFORE CONTINUING 
 
   const [pageIsBroad, setPageIsBroad] = useState(true);
   const [sidebarCol, setSidebarCol] = useState('col-2 col-md-2');
@@ -100,11 +100,6 @@ function AdminLayout({ children, pageTitle }) {
             <Link href="/zones">
               <a className="list-group-item">
                 <i className="fa fa-map-signs"></i> {pageIsBroad && <span>Zoning</span>}
-              </a>
-            </Link>
-            <Link href="/profile">
-              <a className="list-group-item">
-                <i className="fa fa-user"></i> {pageIsBroad && <span>Profile</span>}
               </a>
             </Link>
           </div>

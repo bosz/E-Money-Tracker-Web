@@ -92,4 +92,10 @@ footer {
     text-align: center;
 }
 
+td{
+    vertical-align: baseline !important;
+}
 
+.modalBackdrop{
+    background-color: rgb(57, 57, 124);
+}
