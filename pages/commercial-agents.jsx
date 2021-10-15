@@ -9,53 +9,44 @@ import {
   InputGroupAddon,
   FormInput,
 } from 'shards-react';
-
-export default function transactions() {
+export default function CommercialAgents() {
   const transactions = [
     {
-      created: '20, Jun 2021',
-      amount: '70,000 FCFA',
-      type: 'Cash',
-      effected: '13, Jun 2021',
-      status: 'New',
+      zone: 'Malingo',
+      name: 'Ajah Nickson',
+      Phone: '+237 677 370 614',
     },
     {
-      created: '15, Jul 2021',
-      amount: '200,000 FCFA',
-      type: 'Cash',
-      effected: '13, Jun 2021',
-      status: 'New',
+      zone: 'Malingo',
+      name: 'Tsafack Fokou',
+      Phone: '+237 651 172 131',
     },
     {
-      created: '15, Jul 2021',
-      amount: '200,000 FCFA',
-      type: 'Cash',
-      effected: '13, Jun 2021',
-      status: 'Pending',
+      zone: 'Malingo',
+      name: 'Tambe Martin',
+      Phone: '+237 650 372 015',
     },
     {
-      created: '12, June 2021',
-      amount: '50,000 FCFA',
-      type: 'Float',
-      effected: '13, June 2021',
-      status: 'Validated',
+      zone: 'Bonduma',
+      name: 'Neba Salome',
+      Phone: '+237 674 742 130',
     },
   ];
 
   const [open, setopen] = useState(false);
 
-  const toggle = () => {
+  const toggle = (index) => {
     setopen(!open);
   };
 
   const tableData = transactions.map((transaction, index) => {
     return (
       <tr key={index} className=" align-items-center">
-        <td>{transaction.created}</td>
-        <td>{transaction.amount}</td>
-        <td>{transaction.type}</td>
-        <td>{transaction.effected} </td>
-        <td>
+        <td>{transaction.zone}</td>
+        <td>{transaction.name}</td>
+        <td>{transaction.Phone}</td>
+        {/* <td>{transaction.effected} </td> */}
+        {/* <td>
           {transaction.status === 'Validated' && (
             <span className="text-success">{transaction.status}</span>
           )}
@@ -84,24 +75,24 @@ export default function transactions() {
               <i className="fal m-0 text-success fa-check-double fa-2x"></i>
             </button>
           </td>
-        )}
+        )} */}
       </tr>
     );
   });
 
   return (
     <div className="card text-dark  mb-3">
-      <h4 className="card-header">Transactions</h4>
+      <h4 className="card-header">Commercial agents</h4>
       <div className="card-body">
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Created</th>
-              <th>Amount</th>
-              <th>type</th>
-              <th>Effected at</th>
+              <th>Zone</th>
+              <th>Name</th>
+              <th>Phone</th>
+              {/* <th>Effected at</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Action</th> */}
             </tr>
           </thead>
           <tbody>{tableData}</tbody>

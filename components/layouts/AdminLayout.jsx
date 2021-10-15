@@ -83,7 +83,7 @@ function AdminLayout({ children, pageTitle }) {
             />
          </FormGroup>
 
-          <div className="btn btn-success align-self-center">Submit</div>
+          <div className="btn btn-primary w-100 align-self-center">Submit</div>
         </ModalBody>
       </Modal>
       <Head>
@@ -147,7 +147,7 @@ function AdminLayout({ children, pageTitle }) {
                 <i className="fa fa-exchange"></i> {pageIsBroad && <span>Transactions</span>}
               </a>
             </Link>
-            <Link href="/commercialAgents">
+            <Link href="/commercial-agents">
               <a className="list-group-item">
                 <i className="fa fa-motorcycle"></i> {pageIsBroad && <span>Commercial Agents</span>}
               </a>
