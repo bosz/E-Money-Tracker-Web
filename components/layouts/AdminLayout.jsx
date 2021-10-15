@@ -1,8 +1,19 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Head from 'next/head';
 import React from 'react';
 import Link from 'next/link';
-import { Button, Modal, ModalBody, ModalHeader } from 'shards-react';
+import Select from 'react-select';
+
+import {
+  FormGroup, Modal, ModalBody, ModalHeader, InputGroup,
+  InputGroupText, InputGroupAddon, FormInput, FormSelect
+} from 'shards-react';
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+];
 
 function AdminLayout({ children, pageTitle }) {
   // TODO: CHECK IF USER IS LOGGED IN BEFORE CONTINUING 
@@ -10,7 +21,14 @@ function AdminLayout({ children, pageTitle }) {
   const [pageIsBroad, setPageIsBroad] = useState(true);
   const [sidebarCol, setSidebarCol] = useState('col-2 col-md-2');
   const [mainPageCol, setMainPageCol] = useState('col-10 col-md-10');
+  
+ const [selectedOption, setselectedOption] = useState(null)
 
+  const handleChange = (selectedOption) => {
+    setselectedOption( selectedOption);
+    console.log(`Option selected:`, selectedOption);
+  };
+  
   const toggle = (index) => {
     setopen(!open);
   };
@@ -29,15 +47,41 @@ function AdminLayout({ children, pageTitle }) {
     setPageIsBroad(!pageIsBroad);
   };
 
+ 
+
   return (
     <>
-      <Modal backdrop={true} backdropClassName="modalBackdrop" className="h-50" centered={true} size="lg" open={open} toggle={toggle}>
-        <ModalHeader>Validate transaction</ModalHeader>
+      <Modal backdrop={true} backdropClassName="modalBackdrop" className="h-50" centered={true} size="md" open={open} toggle={toggle}>
+        <ModalHeader>Create new transaction</ModalHeader>
         <ModalBody className="d-flex flex-column">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
-            <span className="input-group-text">FCFA</span>
-          </div>
+
+          <FormGroup>
+            <label  htmlFor="amount">Amount</label>
+            <InputGroup className="mb-2">
+              <FormInput placeholder="Total Amount" />
+              <InputGroupAddon type="append">
+                <InputGroupText>FCFA</InputGroupText>
+              </InputGroupAddon>
+            </InputGroup>
+          </FormGroup>
+
+          <FormGroup>
+            <label htmlFor="type">Type</label>
+            <FormSelect>
+              <option value="" disabled selected>Select transaction type</option>
+              <option value="float">FLoat</option>
+              <option value="cash">Cash</option>
+            </FormSelect>
+          </FormGroup>
+          
+          <FormGroup>
+            <label htmlFor="type">Kiosk</label>
+            <Select
+              value={selectedOption}
+              onChange={handleChange}
+              options={options}
+            />
+         </FormGroup>
 
           <div className="btn btn-success align-self-center">Submit</div>
         </ModalBody>
