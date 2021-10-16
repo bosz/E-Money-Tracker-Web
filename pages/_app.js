@@ -32,7 +32,6 @@ export default function MyApp({ Component, pageProps }) {
     }
   }, [pathname]);
 
-  console.log(pathname);
   return (
     <>
       <Head>
