@@ -2,35 +2,29 @@ import { useState,useEffect } from 'react';
 import Head from 'next/head';
 import React from 'react';
 import Link from 'next/link';
-import Select from 'react-select';
-
-import {
-  FormGroup, Modal, ModalBody, ModalHeader, InputGroup,
-  InputGroupText, InputGroupAddon, FormInput, FormSelect
-} from 'shards-react';
-
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
+import { AddTransactionModal } from '..';
 
 function AdminLayout({ children, pageTitle }) {
   // TODO: CHECK IF USER IS LOGGED IN BEFORE CONTINUING 
-  const [open, setopen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [pageIsBroad, setPageIsBroad] = useState(true);
   const [sidebarCol, setSidebarCol] = useState('col-2 col-md-2');
   const [mainPageCol, setMainPageCol] = useState('col-10 col-md-10');
   
- const [selectedOption, setselectedOption] = useState(null)
-
-  const handleChange = (selectedOption) => {
-    setselectedOption( selectedOption);
-    console.log(`Option selected:`, selectedOption);
-  };
+  const [selectedKiosk, setSelectedKiosk] = useState(null)
+  const [selectedType, setSelectedType] = useState(null)
   
+
+  const handleKioskChange = (selectedKiosk) => {
+    setSelectedKiosk( selectedKiosk);
+  };
+
+  const handleTypeChange = (selectedType )=> {
+    setSelectedType( selectedType);
+  };
+
   const toggle = (index) => {
-    setopen(!open);
+    setOpen(!open);
   };
 
   const toggleSidebarSize = () => {
@@ -47,45 +41,20 @@ function AdminLayout({ children, pageTitle }) {
     setPageIsBroad(!pageIsBroad);
   };
 
- 
-
   return (
     <>
-      <Modal backdrop={true} backdropClassName="modalBackdrop" className="h-50" centered={true} size="md" open={open} toggle={toggle}>
-        <ModalHeader>Create new transaction</ModalHeader>
-        <ModalBody className="d-flex flex-column">
-
-          <FormGroup>
-            <label  htmlFor="amount">Amount</label>
-            <InputGroup className="mb-2">
-              <FormInput placeholder="Total Amount" />
-              <InputGroupAddon type="append">
-                <InputGroupText>FCFA</InputGroupText>
-              </InputGroupAddon>
-            </InputGroup>
-          </FormGroup>
-
-          <FormGroup>
-            <label htmlFor="type">Type</label>
-            <FormSelect>
-              <option value="" disabled selected>Select transaction type</option>
-              <option value="float">FLoat</option>
-              <option value="cash">Cash</option>
-            </FormSelect>
-          </FormGroup>
-          
-          <FormGroup>
-            <label htmlFor="type">Kiosk</label>
-            <Select
-              value={selectedOption}
-              onChange={handleChange}
-              options={options}
-            />
-         </FormGroup>
-
-          <div className="btn btn-primary w-100 align-self-center">Submit</div>
-        </ModalBody>
-      </Modal>
+      <AddTransactionModal
+        open={open}
+        toggle={toggle}
+        handleKioskChange={handleKioskChange}
+        selectedKiosk={selectedKiosk}
+        kioskData={kioskData}
+        transactionTypeData={transactionTypeData}
+        handleTypeChange={handleTypeChange}
+        selectedType = {selectedType}
+      />
+      
+      
       <Head>
         <title>{pageTitle} - E Money Tracker</title>
         <link rel="icon" href="/favicon.ico" />
@@ -98,9 +67,11 @@ function AdminLayout({ children, pageTitle }) {
         </Head>
 
       <header className="">
-        <nav className="navbar navbar-expand-lg">
+        <nav className="navbar navbar-expand-sm">
+        <i onClick={toggleSidebarSize} className="fa fa-list pr-3"></i>{' '}
+
           <button
-            className="navbar-toggler"
+            className="navbar-toggler mr-2 bg-info"
             type="button"
             data-toggle="collapse"
             data-target="#navbarTogglerDemo03"
@@ -108,22 +79,21 @@ function AdminLayout({ children, pageTitle }) {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon "></span>
           </button>
-          <i onClick={toggleSidebarSize} className="fa fa-list pr-3"></i>{' '}
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand flex-1" href="#">
             {' '}
             E Money Tracker
           </a>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+          <div className="collapse d-flex w-100 align-items-center" id="navbarTogglerDemo03">
+            <ul className="navbar-nav mt-0 mr-auto">
               <li onClick={toggle} className="nav-item">
-                <a className="nav-link btn  btn-secondary" href="#">
+                <a className="nav-link btn btn-secondary px-3" href="#">
                   <i className="fa fa-plus-circle"></i> New transaction
                 </a>
               </li>
             </ul>
-            <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+            <ul className="navbar-nav mt-2 mt-lg-0">
               <li className="nav-item">
                 <a className="nav-link" href="#">
                   <i className="fa fa-user"></i> Profile
@@ -180,3 +150,14 @@ function AdminLayout({ children, pageTitle }) {
 }
 
 export default AdminLayout;
+
+const kioskData = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+];
+
+const transactionTypeData = [
+  { value: 'float', label: 'Float' },
+  { value: 'cash', label: 'Cash' },
+];

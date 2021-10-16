@@ -1,54 +1,14 @@
 import { useState } from 'react';
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  InputGroup,
-  InputGroupText,
-  InputGroupAddon,
-  FormInput,
-} from 'shards-react';
+import { ValidateTransactionModal } from '../components';
 
 export default function transactions() {
-  const transactions = [
-    {
-      created: '20, Jun 2021',
-      amount: '70,000 FCFA',
-      type: 'Cash',
-      effected: '13, Jun 2021',
-      status: 'New',
-    },
-    {
-      created: '15, Jul 2021',
-      amount: '200,000 FCFA',
-      type: 'Cash',
-      effected: '13, Jun 2021',
-      status: 'New',
-    },
-    {
-      created: '15, Jul 2021',
-      amount: '200,000 FCFA',
-      type: 'Cash',
-      effected: '13, Jun 2021',
-      status: 'Pending',
-    },
-    {
-      created: '12, June 2021',
-      amount: '50,000 FCFA',
-      type: 'Float',
-      effected: '13, June 2021',
-      status: 'Validated',
-    },
-  ];
-
-  const [open, setopen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const toggle = () => {
-    setopen(!open);
+    setOpen(!open);
   };
 
-  const tableData = transactions.map((transaction, index) => {
+  const tableData = allTransactions.map((transaction, index) => {
     return (
       <tr key={index} className=" align-items-center">
         <td>{transaction.created}</td>
@@ -56,17 +16,26 @@ export default function transactions() {
         <td>{transaction.type}</td>
         <td>{transaction.effected} </td>
         <td>
-          {transaction.status === 'Validated' && (
-            <span className="text-success">{transaction.status}</span>
+          {transaction.status === 'validated' && (
+            <>
+              <i className="fas mr-1 text-success fa-circle "></i>
+              <span className="">{transaction.status}</span>
+            </>
           )}
-          {transaction.status === 'New' && (
-            <span className="text-primary">{transaction.status}</span>
+          {transaction.status === 'new' && (
+            <>
+              <i className="fas mr-1 text-primary fa-circle "></i>
+              <span className="">{transaction.status}</span>
+            </>
           )}
-          {transaction.status === 'Pending' && (
-            <span className="text-warning">{transaction.status}</span>
+          {transaction.status === 'pending' && (
+            <>
+              <i className="fas mr-1 text-warning fa-circle "></i>
+              <span className="">{transaction.status}</span>
+            </>
           )}
         </td>
-        {transaction.status !== 'Validated' ? (
+        {transaction.status !== 'validated' ? (
           <td>
             <button
               onClick={() => toggle(index)}
@@ -98,8 +67,8 @@ export default function transactions() {
             <tr>
               <th>Created</th>
               <th>Amount</th>
-              <th>type</th>
-              <th>Effected at</th>
+              <th>Type</th>
+              <th>Effected At</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -107,28 +76,38 @@ export default function transactions() {
           <tbody>{tableData}</tbody>
         </table>
       </div>
-
-      <Modal
-        backdrop={true}
-        backdropClassName="modalBackdrop"
-        className="h-50"
-        centered={true}
-        size="md"
-        open={open}
-        toggle={toggle}
-      >
-        <ModalHeader>Validate transaction</ModalHeader>
-        <ModalBody className="d-flex flex-column">
-          <InputGroup className="mb-2">
-            <FormInput placeholder="Total Amount" />
-            <InputGroupAddon type="append">
-              <InputGroupText>FCFA</InputGroupText>
-            </InputGroupAddon>
-          </InputGroup>
-
-          <div className="btn btn-primary w-100 mt-3 align-self-center">Submit</div>
-        </ModalBody>
-      </Modal>
+      <ValidateTransactionModal open={open} toggle={toggle} />
     </div>
   );
 }
+
+const allTransactions = [
+  {
+    created: '20, Jun 2021',
+    amount: '70,000 FCFA',
+    type: 'Cash',
+    effected: '13, Jun 2021',
+    status: 'new',
+  },
+  {
+    created: '15, Jul 2021',
+    amount: '200,000 FCFA',
+    type: 'Cash',
+    effected: '13, Jun 2021',
+    status: 'new',
+  },
+  {
+    created: '15, Jul 2021',
+    amount: '200,000 FCFA',
+    type: 'Cash',
+    effected: '13, Jun 2021',
+    status: 'pending',
+  },
+  {
+    created: '12, June 2021',
+    amount: '50,000 FCFA',
+    type: 'Float',
+    effected: '13, June 2021',
+    status: 'validated',
+  },
+];

@@ -99,3 +99,7 @@ td{
 .modalBackdrop{
     background-color: rgb(57, 57, 124);
 }
+
+.btn{
+    border-radius: 3px !important;
+}
