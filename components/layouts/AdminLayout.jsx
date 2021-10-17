@@ -13,7 +13,7 @@ function AdminLayout({ children, pageTitle }) {
   
   const [selectedKiosk, setSelectedKiosk] = useState(null)
   const [selectedType, setSelectedType] = useState(null)
-  
+  const [activeElement, setActiveElement] = useState(1)
 
   const handleKioskChange = (selectedKiosk) => {
     setSelectedKiosk( selectedKiosk);
@@ -40,6 +40,10 @@ function AdminLayout({ children, pageTitle }) {
 
     setPageIsBroad(!pageIsBroad);
   };
+
+  const sidenavClick = (id) => {
+    setActiveElement(id)
+  }
 
   return (
     <>
@@ -107,28 +111,28 @@ function AdminLayout({ children, pageTitle }) {
         <div className={'p-2 text-white h-100 ' + sidebarCol} id="sidebar">
           <div className="list-group">
             <Link href="/" aria-current="true">
-              <a className="list-group-item active">
+              <a onClick={()=>sidenavClick(1)} className={`list-group-item ${activeElement == 1 && 'active'}`}>
                 <i className="fa fa-home"></i>
                 {pageIsBroad && <span>Home</span>}
               </a>
             </Link>
             <Link href="/transactions">
-              <a className="list-group-item">
+              <a onClick={()=>sidenavClick(2)} className={`list-group-item ${activeElement == 2 && 'active'}`}>
                 <i className="fa fa-exchange"></i> {pageIsBroad && <span>Transactions</span>}
               </a>
             </Link>
             <Link href="/commercial-agents">
-              <a className="list-group-item">
+              <a onClick={()=>sidenavClick(3)} className={`list-group-item ${activeElement == 3 && 'active'}`}>
                 <i className="fa fa-motorcycle"></i> {pageIsBroad && <span>Commercial Agents</span>}
               </a>
             </Link>
             <Link href="/kiosks">
-              <a className="list-group-item">
+              <a onClick={()=>sidenavClick(4)} className={`list-group-item ${activeElement == 4 && 'active'}`}>
                 <i className="fa fa-store"></i> {pageIsBroad && <span>Kiosks</span>}
               </a>
             </Link>
             <Link href="/zones">
-              <a className="list-group-item">
+              <a onClick={()=>sidenavClick(5)} className={`list-group-item ${activeElement == 5 && 'active'}`}>
                 <i className="fa fa-map-signs"></i> {pageIsBroad && <span>Zoning</span>}
               </a>
             </Link>
