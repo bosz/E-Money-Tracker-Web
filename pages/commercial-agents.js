@@ -28,6 +28,14 @@ export default function CommercialAgents() {
         <td>{transaction.zone}</td>
         <td>{transaction.name}</td>
         <td>{transaction.Phone}</td>
+        <td className="d-flex">
+          <div className="border shadow-sm mr-3 edit-btn rounded-circle">
+            <i class="fal fa-pen"></i>
+          </div>
+          <div className="view-ca-btn ">
+            <i class="fal fa-angle-right fa-2x"></i>{' '}
+          </div>
+        </td>
       </tr>
     );
   });
@@ -42,6 +50,7 @@ export default function CommercialAgents() {
               <th>Zone</th>
               <th>Name</th>
               <th>Phone</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>{tableData}</tbody>

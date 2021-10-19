@@ -103,3 +103,19 @@ td{
 .btn{
     border-radius: 3px !important;
 }
+
+.edit-btn{
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-ca-btn:hover, .edit-btn:hover{
+    cursor: pointer;
+}
+
+table{
+    /* text-align: center !important; */
+}
