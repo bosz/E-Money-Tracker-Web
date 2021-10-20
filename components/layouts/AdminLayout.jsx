@@ -2,9 +2,13 @@ import { useState } from 'react';
 import Head from 'next/head';
 import React from 'react';
 import Link from 'next/link';
-import { AddTransactionModal } from '..';
+import { AddTransactionModal, ChangeLanguage } from '..';
+import { useTranslation } from 'react-i18next';
+
 
 function AdminLayout({ children, pageTitle }) {
+  const { t,i18n } = useTranslation();
+
   // TODO: CHECK IF USER IS LOGGED IN BEFORE CONTINUING 
   const [open, setOpen] = useState(false);
   const [pageIsBroad, setPageIsBroad] = useState(true);
@@ -93,7 +97,7 @@ function AdminLayout({ children, pageTitle }) {
             <ul className="navbar-nav mt-0 mr-auto">
               <li onClick={toggle} className="nav-item">
                 <a className="nav-link btn btn-secondary px-3" href="#">
-                  <i className="fa fa-plus-circle"></i> New transaction
+                  <i className="fa fa-plus-circle"></i> {t('navbar.newTransaction')}
                 </a>
               </li>
             </ul>
@@ -104,6 +108,7 @@ function AdminLayout({ children, pageTitle }) {
                 </a>
               </li>
             </ul>
+            <ChangeLanguage/>
           </div>
         </nav>
       </header>
@@ -113,27 +118,27 @@ function AdminLayout({ children, pageTitle }) {
             <Link href="/" aria-current="true">
               <a onClick={()=>sidenavClick(1)} className={`list-group-item ${activeElement == 1 && 'active'}`}>
                 <i className="fa fa-home"></i>
-                {pageIsBroad && <span>Home</span>}
+                {pageIsBroad && <span>{t('sidenav.home')}</span>}
               </a>
             </Link>
             <Link href="/transactions">
               <a onClick={()=>sidenavClick(2)} className={`list-group-item ${activeElement == 2 && 'active'}`}>
-                <i className="fa fa-exchange"></i> {pageIsBroad && <span>Transactions</span>}
+                <i className="fa fa-exchange"></i> {pageIsBroad && <span>{t('sidenav.transaction')}</span>}
               </a>
             </Link>
             <Link href="/commercial-agents">
               <a onClick={()=>sidenavClick(3)} className={`list-group-item ${activeElement == 3 && 'active'}`}>
-                <i className="fa fa-motorcycle"></i> {pageIsBroad && <span>Commercial Agents</span>}
+                <i className="fa fa-motorcycle"></i> {pageIsBroad && <span>{t('sidenav.commercialAgents')}</span>}
               </a>
             </Link>
             <Link href="/kiosks">
               <a onClick={()=>sidenavClick(4)} className={`list-group-item ${activeElement == 4 && 'active'}`}>
-                <i className="fa fa-store"></i> {pageIsBroad && <span>Kiosks</span>}
+                <i className="fa fa-store"></i> {pageIsBroad && <span>{t('sidenav.kiosks')}</span>}
               </a>
             </Link>
             <Link href="/zones">
               <a onClick={()=>sidenavClick(5)} className={`list-group-item ${activeElement == 5 && 'active'}`}>
-                <i className="fa fa-map-signs"></i> {pageIsBroad && <span>Zoning</span>}
+                <i className="fa fa-map-signs"></i> {pageIsBroad && <span>{t('sidenav.zoning')}</span>}
               </a>
             </Link>
           </div>

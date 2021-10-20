@@ -1,13 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'shards-ui/dist/css/shards.min.css';
 import './../styles/App.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Head from 'next/head';
 import { AdminLayout } from '../components';
 import { useRouter } from 'next/router';
+import './i18n';
+import { useTranslation } from 'react-i18next';
 
 export default function MyApp({ Component, pageProps }) {
   const { pathname } = useRouter();
+  const { i18n } = useTranslation();
 
   const [titleText, setTitleText] = useState('');
   useEffect(() => {
@@ -31,6 +34,12 @@ export default function MyApp({ Component, pageProps }) {
         break;
     }
   }, [pathname]);
+
+  useEffect(() => {
+    let defaultLanguage = navigator.language;
+    i18n.changeLanguage(defaultLanguage);
+    // console.log(defaultLanguage);
+  }, []);
 
   return (
     <>
