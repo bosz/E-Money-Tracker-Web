@@ -73,9 +73,7 @@ header nav a {
 #mainpage {
     background-color: #cccccc11;
     position: relative;
-    /* width: 80%; */
     padding: 10px;
-    /* left: 20%; */
     height: 100%;
     overflow: auto;
 }
