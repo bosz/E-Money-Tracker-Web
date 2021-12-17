@@ -73,9 +73,7 @@ header nav a {
 #mainpage {
     background-color: #cccccc11;
     position: relative;
-    /* width: 80%; */
     padding: 10px;
-    /* left: 20%; */
     height: 100%;
     overflow: auto;
 }
@@ -92,4 +90,30 @@ footer {
     text-align: center;
 }
 
+td{
+    vertical-align: baseline !important;
+}
 
+.modalBackdrop{
+    background-color: rgb(57, 57, 124);
+}
+
+.btn{
+    border-radius: 3px !important;
+}
+
+.edit-btn{
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-ca-btn:hover, .edit-btn:hover{
+    cursor: pointer;
+}
+
+table{
+    /* text-align: center !important; */
+}
